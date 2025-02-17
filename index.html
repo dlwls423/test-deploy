@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#4CAF50" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+  
+    <!-- iOS PWA 지원 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Chat App" />
+  
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat Screen</title>
@@ -172,6 +181,11 @@
     </div>
 
     <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(() => console.log('Service Worker Registered'));
+    }
+      
       const sendButton = document.getElementById("send-btn");
       const messageInput = document.getElementById("message-input");
       const chatBox = document.getElementById("chat-box");
