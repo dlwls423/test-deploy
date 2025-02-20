@@ -137,6 +137,12 @@
         }
 
         /* 날짜 구분선 */
+        .date-box {
+            display: flex;
+            justify-content: center;  /* 가로 중앙 정렬 */
+            align-items: center; 
+        }
+        
         .date-separator {
             display: inline-block;
             text-align: center;
@@ -185,7 +191,9 @@
             </div>
 
             <!-- Date separator -->
-            <div class="date-separator">February 18, 2025</div>
+            <div class="date-box">
+                <div class="date-separator">February 18, 2025</div>
+            </div>
 
             <!-- Later conversation -->
             <div class="message message-right">
