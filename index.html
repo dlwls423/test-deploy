@@ -1,230 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#4CAF50" />
-    <link rel="apple-touch-icon" href="/icon-192.png" />
-  
-    <!-- iOS PWA 지원 -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Chat App" />
-  
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Screen</title>
     <style>
-      /* Basic styling */
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
 
-      .chat-container {
-        width: 100%;
-        max-width: 500px;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
-        background-color: #fff;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
+        .chat-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #f2efe6;
+            border-radius: 0; /* 모서리 둥글게 없앰 */
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-      .chat-header {
-        background-color: #4caf50;
-        color: white;
-        padding: 15px;
-        text-align: center;
-        flex-shrink: 0; /* Prevent header from shrinking */
-      }
+        .chat-header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #357a38;
+            color: white;
+            position: relative;
+        }
 
-      .chat-box {
-        flex-grow: 1;
-        overflow-y: auto;
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        max-height: calc(100vh - 140px); /* Adjust to fit screen */
-      }
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-      .chat-input-container {
-        display: flex;
-        border-top: 1px solid #ddd;
-        padding: 10px;
-        background-color: #f9f9f9;
-        flex-shrink: 0;
-      }
+        .header-content img {
+            width: 20px;
+            height: auto;
+            cursor: pointer;
+        }
 
-      #message-input {
-        flex-grow: 1;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-      }
+        .header-content .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
 
-      #send-btn {
-        padding: 10px 15px;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
+        .header-content .name {
+            font-size: 23px;
+            font-weight: 400; /* 폰트 얇게 변경 */
+        }
 
-      #send-btn:hover {
-        background-color: #45a049;
-      }
+        .chat-box {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
 
-      .message {
-        display: flex;
-        flex-direction: column;
-      }
+        .chat-input-container {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
 
-      .message-left {
-        align-items: flex-start;
-      }
+        #message-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
 
-      .message-right {
-        align-items: flex-end;
-      }
+        #send-btn {
+            padding: 10px 15px;
+            background-color: #357a38;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-      .message-text {
-        padding: 10px;
-        border-radius: 8px;
-        max-width: 70%;
-      }
+        #send-btn:hover {
+            background-color: #2e6b32;
+        }
 
-      .message-left .message-text {
-        background-color: #f1f1f1;
-      }
+        .message {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: var(--chat-gap, 15px); /* 채팅 간격 조절 가능 */
+        }
 
-      .message-right .message-text {
-        background-color: #4caf50;
-        color: white;
-      }
+        .message-left {
+            align-items: flex-start;
+        }
+
+        .message-right {
+            align-items: flex-end;
+        }
+
+        .message-text {
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 70%;
+        }
+
+        .message-left .message-text {
+            background-color: #f4e3a5;
+        }
+
+        .message-right .message-text {
+            background-color: #357a38;
+            color: white;
+        }
+
+        /* 날짜 구분선 */
+        .date-separator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 25%;
+            background-color: #000000; /* 글씨보다 조금 연한 회색 */
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 400;
+            padding: 5px 0;
+            border-radius: 20px;
+            opacity: 0.3; /* 0.0(완전 투명) ~ 1.0(완전 불투명) */
+            margin: 30px auto; /* 날짜 구분선과 채팅 사이의 간격 조절 */
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="chat-container">
-      <div class="chat-header">
-        <h2>Chat</h2>
-      </div>
-      <div class="chat-box" id="chat-box">
-        <!-- Messages will appear here -->
-        <div class="message message-right">
-          <div class="message-text">I’ve decided to go after all.</div>
+        <div class="chat-header">
+            <div class="header-content">
+                <img src="arrow_white.png" alt="Back" class="back-arrow">
+                <img src="107231-150ppp_transparent (1).png" alt="Lisa" class="profile-img">
+                <span class="name">Lisa</span>
+            </div>
         </div>
-        <div class="message message-left">
-          <div class="message-text">Oh, okay. I’m worried though...</div>
+        <div class="chat-box" id="chat-box">
+            <!-- Initial conversation -->
+            <div class="message message-left">
+                <div class="message-text">Ugh, they pushed call time to 6 AM Night shoots ran over</div>
+            </div>
+            <div class="message message-right">
+                <div class="message-text">??? Who’s covering for me?</div>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">Mia. She’s cool with it</div>
+            </div>
+            <div class="message message-right">
+                <div class="message-text">Lifesaver I owe her</div>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">Yeah big time She’s taking all your work</div>
+            </div>
+            <div class="message message-right">
+                <div class="message-text">Gotta get her something nice</div>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">ASAP lol</div>
+            </div>
+
+            <!-- Date separator -->
+            <div class="date-separator">February 18, 2025</div>
+
+            <!-- Later conversation -->
+            <div class="message message-right">
+                <div class="message-text">I’ve decided to go after all</div>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">I see… Okay I’m worried about you, though</div>
+            </div>
+            <div class="message message-right">
+                <div class="message-text">I’m taking the 4 PM flight</div>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">Take care Say hi to Mom for me</div>
+            </div>
+            <div class="message message-right">
+                <div class="message-text">Thanks</div>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">Just make sure it’s a choice you won’t regret</div>
+            </div>
         </div>
-        <div class="message message-right">
-          <div class="message-text">I’m taking the 4 PM flight.</div>
+        <div class="chat-input-container">
+            <input type="text" id="message-input" placeholder="Type a message..." />
+            <button id="send-btn">Send</button>
         </div>
-        <div class="message message-left">
-          <div class="message-text">Be careful. Say hi to Mom for me!</div>
-        </div>
-        <div class="message message-right">
-          <div class="message-text">Thanks.</div>
-        </div>
-        <div class="message message-left">
-          <div class="message-text">
-            Just make sure it’s a decision you won’t regret.
-          </div>
-        </div>
-        <div class="message message-right">
-          <div class="message-text">I’m safe, don’t worry.</div>
-        </div>
-        <div class="message message-left">
-          <div class="message-text">That’s such a relief!</div>
-        </div>
-        <div class="message message-right">
-          <div class="message-text">How’s everything on your side?</div>
-        </div>
-        <div class="message message-left">
-          <div class="message-text">Things feel kinda off here...</div>
-        </div>
-        <div class="message message-right">
-          <div class="message-text">What do you mean?</div>
-        </div>
-        <div class="message message-left">
-          <div class="message-text">
-            I’ll let you know when I have more details.
-          </div>
-        </div>
-        <div class="message message-right">
-          <div class="message-text">Okay, thanks.</div>
-        </div>
-        <div class="message message-left">
-          <div class="message-text">
-            The actor’s union just went on strike! Filming’s postponed.
-          </div>
-        </div>
-        <div class="message message-left">
-          <div class="message-text">
-            Looks like you’ve got a chance to stay in Japan now!
-          </div>
-        </div>
-      </div>
-      <div class="chat-input-container">
-        <input type="text" id="message-input" placeholder="Type a message..." />
-        <button id="send-btn">Send</button>
-      </div>
     </div>
 
     <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(() => console.log('Service Worker Registered'));
-    }
-      
-      const sendButton = document.getElementById("send-btn");
-      const messageInput = document.getElementById("message-input");
-      const chatBox = document.getElementById("chat-box");
+        const sendButton = document.getElementById('send-btn');
+        const messageInput = document.getElementById('message-input');
+        const chatBox = document.getElementById('chat-box');
 
-      // Function to send messages
-      function sendMessage() {
-        const messageText = messageInput.value.trim();
-        if (messageText === "") return;
+        function sendMessage() {
+            const messageText = messageInput.value.trim();
+            if (messageText === "") return;
 
-        const messageElement = document.createElement("div");
-        messageElement.classList.add("message", "message-right");
-        messageElement.innerHTML = `<div class="message-text">${messageText}</div>`;
-        chatBox.appendChild(messageElement);
-        messageInput.value = ""; // Clear the input field
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', 'message-right');
+            messageElement.innerHTML = `<div class="message-text">${messageText}</div>`;
+            chatBox.appendChild(messageElement);
+            messageInput.value = '';
 
-        // Scroll to the bottom of the chat box
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }
-
-      // Send message on Enter key
-      messageInput.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-          sendMessage();
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
-      });
 
-      // Send message on button click
-      sendButton.addEventListener("click", sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
 
-      // Automatically request full screen on page load
-      document.addEventListener("DOMContentLoaded", () => {
-        if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen().catch((err) => {
-            console.warn(
-              `Error attempting to enable fullscreen mode: ${err.message}`
-            );
-          });
-        }
-      });
+        sendButton.addEventListener('click', sendMessage);
     </script>
-  </body>
+</body>
 </html>
