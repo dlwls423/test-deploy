@@ -199,6 +199,11 @@
     </div>
 
     <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(() => console.log('Service Worker Registered'));
+        }
+        
         const sendButton = document.getElementById('send-btn');
         const messageInput = document.getElementById('message-input');
         const chatBox = document.getElementById('chat-box');
