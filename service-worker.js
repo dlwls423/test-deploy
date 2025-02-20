@@ -1,12 +1,14 @@
-// service-worker.js
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open('chat-app-cache').then((cache) => {
+    caches.open('chat-app-v1').then((cache) => {
       return cache.addAll([
         '/',
         '/index.html',
-        '/icon-192.png',
-        '/icon-512.png'
+        '/styles.css',
+        '/script.js',
+        '/manifest.json',
+        '/icons/icon-192x192.png',
+        '/icons/icon-512x512.png'
       ]);
     })
   );
