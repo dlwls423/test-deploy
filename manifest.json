@@ -1,19 +1,18 @@
 {
   "name": "Chat App",
   "short_name": "Chat",
-  "start_url": "/",
-  "display": "standalone",
+  "start_url": "/index.html",
+  "display": "fullscreen",
   "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
-  "orientation": "portrait",
+  "theme_color": "#357a38",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
