@@ -111,6 +111,8 @@
             display: flex;
             flex-direction: column;
             margin-bottom: var(--chat-gap, 15px); /* 채팅 간격 조절 가능 */
+            position: relative;
+    
         }
 
         .message-left {
@@ -135,6 +137,138 @@
             background-color: #357a38;
             color: white;
         }
+
+           /* Timestamp styling */
+           .timestamp {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 355px;
+        }
+        .timestamp2 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 120px;
+        }
+        .timestamp3 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 355px;
+        }
+        .timestamp4 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 77px;
+        }
+        .timestamp5 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 77px;
+        }
+        .timestamp6 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 244px;
+        }
+        .timestamp7 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 252px;
+        }
+        .timestamp8 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 213px;
+        }
+        .timestamp9 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 111px;
+        }
+        .timestamp10 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 255px;
+        }
+        .timestamp11 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 343px;
+        }
+        .timestamp12 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 208px;
+        }
+        .timestamp13 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 93px;
+        }
+        .timestamp14 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 78px;
+            
+        }
+        .timestamp15 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 102px;
+        }
+        .timestamp16 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 358px;
+        }
+        .timestamp17 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 71px;
+        }
+        .timestamp18 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 153px;
+        }
+
+
+
 
         /* 날짜 구분선 */
         .date-box {
@@ -161,33 +295,56 @@
     <div class="chat-container">
         <div class="chat-header">
             <div class="header-content">
-                <img src="arrow_white.png" alt="Back" class="back-arrow">
+                <img src="arrow_white.png" alt="Back" class="back-arrow" onclick="goToPage()">
                 <img src="107231-150ppp_transparent (1).png" alt="Lisa" class="profile-img">
                 <span class="name">Lisa</span>
             </div>
         </div>
         <div class="chat-box" id="chat-box">
             <!-- Initial conversation -->
+            <div class="message message-right">
+                <div class="message-text">If they push call time any earlier, I might as well just sleep on set</div>
+                <span class="timestamp">3:27 AM</span>
+            </div>
             <div class="message message-left">
-                <div class="message-text">Ugh, they pushed call time to 6 AM Night shoots ran over</div>
+                <div class="message-text">Right? Night shoots already wrecked me</div>
+                <span class="timestamp2">3:31 AM</span>
             </div>
             <div class="message message-right">
-                <div class="message-text">??? Who’s covering for me?</div>
+                <div class="message-text">I was hoping for at least a few more hours before getting dragged back</div>
+                <span class="timestamp3">3:38 AM</span>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">Lol, yeah… I guess production runs on zero sleep</div>
+                <span class="timestamp4">3:39 AM</span>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">Ugh, they pushed call time to 6 AM Night shoots ran over</div>
+                <span class="timestamp5">3:58 AM</span>
+            </div>
+            <div class="message message-right">
+                <div class="message-text">What? Who’s covering for me?</div>
+                <span class="timestamp6">4:01 AM</span>
             </div>
             <div class="message message-left">
                 <div class="message-text">Mia. She’s cool with it</div>
+                <span class="timestamp7">4:01 AM</span>
             </div>
             <div class="message message-right">
-                <div class="message-text">Lifesaver I owe her</div>
+                <div class="message-text">She's a lifesaver I owe her</div>
+                <span class="timestamp8">4:02 AM</span>
             </div>
             <div class="message message-left">
-                <div class="message-text">Yeah big time She’s taking all your work</div>
+                <div class="message-text">Yeah, seriously. She’s taking all your work</div>
+                <span class="timestamp9">4:15 AM</span>
             </div>
             <div class="message message-right">
-                <div class="message-text">Gotta get her something nice</div>
+                <div class="message-text">I need to get her something nice</div>
+                <span class="timestamp10">4:17 AM</span>
             </div>
             <div class="message message-left">
                 <div class="message-text">ASAP lol</div>
+                <span class="timestamp11">4:19 AM</span>
             </div>
 
             <!-- Date separator -->
@@ -198,22 +355,48 @@
             <!-- Later conversation -->
             <div class="message message-right">
                 <div class="message-text">I’ve decided to go after all</div>
+                <span class="timestamp12">12:42 PM</span>
             </div>
             <div class="message message-left">
                 <div class="message-text">I see… Okay I’m worried about you, though</div>
-            </div>
-            <div class="message message-right">
-                <div class="message-text">I’m taking the 4 PM flight</div>
-            </div>
-            <div class="message message-left">
-                <div class="message-text">Take care Say hi to Mom for me</div>
+                <span class="timestamp13">12:47 PM</span>
             </div>
             <div class="message message-right">
                 <div class="message-text">Thanks</div>
+                <span class="timestamp14">12:49 PM</span>
             </div>
             <div class="message message-left">
-                <div class="message-text">Just make sure it’s a choice you won’t regret</div>
+                <div class="message-text">You should make a choice you won't regret</div>
+                <span class="timestamp15">1:14 PM</span>
             </div>
+
+
+             <!-- Date separator -->
+            <div class="date-box">
+            <div class="date-separator">February 34, 2025</div>
+            </div>
+
+            <!-- Later conversation -->
+            <div class="message message-left">
+            <div class="message-text">Nana!</div>
+            <span class="timestamp16">15:05 PM</span>
+            </div>
+            <div class="message message-left">
+            <div class="message-text">There's a straike, so the shoot's on hold for now</div>
+            <span class="timestamp17">15:05 PM</span>
+            </div>
+            <div class="message message-left">
+            <div class="message-text">This is your chance to be  in Japan!</div>
+            <span class="timestamp18">15:06 PM</span>
+</div>
+</div>
+<div class="chat-input-container">
+<input type="text" id="message-input" placeholder="Type a message..." />
+<button id="send-btn">Send</button>
+
+</div>
+
+            
         </div>
         <div class="chat-input-container">
             <input type="text" id="message-input" placeholder="Type a message..." />
@@ -251,6 +434,10 @@
         });
 
         sendButton.addEventListener('click', sendMessage);
+
+        function goToPage() {
+            window.location.href = 'other.html'; // 이동할 페이지 경로
+        }
     </script>
 </body>
 </html>
