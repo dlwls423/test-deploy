@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#4CAF50" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+  
+    <!-- iOS PWA 지원 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Chat App" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Screen</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 500px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            background-color: #f2efe6;
+            border-radius: 0; /* 모서리 둥글게 없앰 */
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #357a38;
+            color: white;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-content img {
+            width: 20px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .header-content .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .header-content .name {
+            font-size: 23px;
+            font-weight: 400; /* 폰트 얇게 변경 */
+        }
+
+        .chat-box {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .chat-input-container {
+            display: flex;
+            position: sticky;
+            bottom: 0;
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        #message-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #send-btn {
+            padding: 10px 15px;
+            background-color: #357a38;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #send-btn:hover {
+            background-color: #2e6b32;
+        }
+
+        .message {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: var(--chat-gap, 15px); /* 채팅 간격 조절 가능 */
+            position: relative;
+    
+        }
+
+        .message-left {
+            align-items: flex-start;
+        }
+
+        .message-right {
+            align-items: flex-end;
+        }
+
+        .message-text {
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 70%;
+        }
+
+        .message-left .message-text {
+            background-color: #f4e3a5;
+        }
+
+        .message-right .message-text {
+            background-color: #357a38;
+            color: white;
+        }
+
+           /* Timestamp styling */
+           .timestamp {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 355px;
+        }
+        .timestamp2 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 120px;
+        }
+        .timestamp3 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 355px;
+        }
+        .timestamp4 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 77px;
+        }
+        .timestamp5 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 77px;
+        }
+        .timestamp6 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 244px;
+        }
+        .timestamp7 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 252px;
+        }
+        .timestamp8 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 213px;
+        }
+        .timestamp9 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 111px;
+        }
+        .timestamp10 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 255px;
+        }
+        .timestamp11 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 343px;
+        }
+        .timestamp12 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 208px;
+        }
+        .timestamp13 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 94px;
+        }
+        .timestamp14 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 78px;
+            
+        }
+        .timestamp15 {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            bottom: 1px;
+            right: 102px;
+        }
+
+        /* 날짜 구분선 */
+        .date-box {
+            display: flex;
+            justify-content: center;  /* 가로 중앙 정렬 */
+            align-items: center; 
+        }
+        
+        .date-separator {
+            display: inline-block;
+            text-align: center;
+            background-color: #000000; /* 글씨보다 조금 연한 회색 */
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 400;
+            padding: 5px 10px;
+            border-radius: 20px;
+            opacity: 0.3; /* 0.0(완전 투명) ~ 1.0(완전 불투명) */
+            margin: 30px auto; /* 날짜 구분선과 채팅 사이의 간격 조절 */
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="header-content">
+                <img src="arrow_white.png" alt="Back" class="back-arrow">
+                <img src="107231-150ppp_transparent (1).png" alt="Lisa" class="profile-img">
+                <span class="name">Lisa</span>
+            </div>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <!-- Initial conversation -->
+            <div class="message message-right">
+                <div class="message-text">If they push call time any earlier, I might as well just sleep on set</div>
+                <span class="timestamp">3:27 AM</span>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">Right? Night shoots already wrecked me</div>
+                <span class="timestamp2">3:31 AM</span>
+            </div>
+            <div class="message message-right">
+                <div class="message-text">I was hoping for at least a few more hours before getting dragged back</div>
+                <span class="timestamp3">3:38 AM</span>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">Lol, yeah… I guess production runs on zero sleep</div>
+                <span class="timestamp4">3:39 AM</span>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">Ugh, they pushed call time to 6 AM Night shoots ran over</div>
+                <span class="timestamp5">3:58 AM</span>
+            </div>
+            <div class="message message-right">
+                <div class="message-text">What? Who’s covering for me?</div>
+                <span class="timestamp6">4:01 AM</span>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">Mia. She’s cool with it</div>
+                <span class="timestamp7">4:01 AM</span>
+            </div>
+            <div class="message message-right">
+                <div class="message-text">She's a lifesaver I owe her</div>
+                <span class="timestamp8">4:02 AM</span>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">Yeah, seriously. She’s taking all your work</div>
+                <span class="timestamp9">4:15 AM</span>
+            </div>
+            <div class="message message-right">
+                <div class="message-text">I need to get her something nice</div>
+                <span class="timestamp10">4:17 AM</span>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">ASAP lol</div>
+                <span class="timestamp11">4:19 AM</span>
+            </div>
+
+            <!-- Date separator -->
+            <div class="date-box">
+                <div class="date-separator">February 18, 2025</div>
+            </div>
+
+            <!-- Later conversation -->
+            <div class="message message-right">
+                <div class="message-text">I’ve decided to go after all</div>
+                <span class="timestamp12">12:42 PM</span>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">I see… Okay I’m worried about you, though</div>
+                <span class="timestamp13">12:47 PM</span>
+            </div>
+            <div class="message message-right">
+                <div class="message-text">Thanks</div>
+                <span class="timestamp14">12:49 PM</span>
+            </div>
+            <div class="message message-left">
+                <div class="message-text">You should make a choice you won't regret</div>
+                <span class="timestamp15">1:14 PM</span>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="message-input" placeholder="Type a message..." />
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(() => console.log('Service Worker Registered'));
+        }
+        
+        const sendButton = document.getElementById('send-btn');
+        const messageInput = document.getElementById('message-input');
+        const chatBox = document.getElementById('chat-box');
+
+        function sendMessage() {
+            const messageText = messageInput.value.trim();
+            if (messageText === "") return;
+
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', 'message-right');
+            messageElement.innerHTML = `<div class="message-text">${messageText}</div>`;
+            chatBox.appendChild(messageElement);
+            messageInput.value = '';
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        sendButton.addEventListener('click', sendMessage);
+    </script>
+</body>
+</html>
