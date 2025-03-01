@@ -1,6 +1,6 @@
 {
-  "name": "Chat App",
-  "short_name": "Chat",
+  "name": "whatschat",
+  "short_name": "whatschat",
   "start_url": "/index.html",
   "display": "fullscreen",
   "background_color": "#ffffff",
